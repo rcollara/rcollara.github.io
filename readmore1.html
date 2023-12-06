@@ -1,0 +1,376 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <title>Project Details - Managing Healthcare Management System Requirements in JIRA</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+</head>
+
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <a href="index.html" class="logo">Rodrigo Collarana</a>
+        </header>
+
+        <!-- Main -->
+        <div id="main" class="alt">
+
+            <!-- Healthcare Management System Project Details -->
+            <section id="project-details">
+                <h2>Project: Managing Healthcare Management System Requirements in JIRA</h2>
+
+                <h3>I. Introduction</h3>
+                <p>This project outlines the process of managing healthcare management system requirements in JIRA and utilizing a SCRUM board to organize and prioritize tasks effectively.</p>
+
+                <h3>II. Project Details</h3>
+                <ul>
+                    <li><strong>Objective:</strong> Optimize the process of managing healthcare management system requirements through the implementation of JIRA and SCRUM methodologies.</li>
+                    <li><strong>Roles and Responsibilities:</strong>
+                        <ul>
+                            <li>Led the requirements management efforts.</li>
+                            <li>Collaborated with the team to define and prioritize tasks.</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>III. Methodology</h3>
+                <ul>
+                    <li><strong>JIRA Workflow:</strong> Established a customized JIRA workflow, systematically managing and tracking healthcare management system requirements.</li>
+                    <li><strong>SCRUM Board:</strong> Implemented a SCRUM board, utilizing sprints for efficient task management.</li>
+                </ul>
+
+                <!-- Add more sections as needed -->
+				<!-- Healthcare Management System Project Details -->
+<section id="project-details">
+
+
+    <!-- ... (existing content) ... -->
+
+    <!-- Screenshots -->
+    <h3>IX. Visuals and Evidence</h3>
+    <p>Here are some visuals and evidence related to the project:</p>
+    <div class="screenshots">
+        <img src="images/image1.jpg" alt="JIRA Workflow Screenshot" />
+        <img src="images/image4.jpg" alt="SCRUM Board Screenshot" />
+        <!-- Add more screenshots as needed -->
+    </div>
+
+    <!-- Code Snippets -->
+    <h3>X. Code Snippets</h3>
+    <p>Here are some relevant code snippets from the project:</p>
+    <pre>
+        <code>
+import tkinter as tk
+from tkinter import messagebox, filedialog
+
+# Create the main application window
+app = tk.Tk()
+app.title("Report Generation and Patient Search")
+
+# Function to generate the report
+def generate_report():
+    # Retrieve selected report parameters
+    selected_parameters = []
+    if var_demographics.get():
+        selected_parameters.append("Demographics")
+    if var_medical_history.get():
+        selected_parameters.append("Medical History")
+    if var_date_range.get():
+        selected_parameters.append("Date Range")
+
+    # Simulate report generation (replace with actual code)
+    generated_report = f"Generated Report with Parameters: {', '.join(selected_parameters)}"
+
+    # Display the generated report
+    txt_generated_report.config(state=tk.NORMAL)
+    txt_generated_report.delete("1.0", tk.END)
+    txt_generated_report.insert(tk.END, generated_report)
+    txt_generated_report.config(state=tk.DISABLED)
+
+    # Enable download buttons
+    btn_download_pdf.config(state=tk.NORMAL)
+    btn_download_excel.config(state=tk.NORMAL)
+    btn_download_csv.config(state=tk.NORMAL)
+
+
+# Function to save the report as PDF
+def save_as_pdf():
+    file_path = filedialog.asksaveasfilename(defaultextension=".pdf", filetypes=[("PDF files", "*.pdf")])
+    if file_path:
+        # Simulate saving as PDF (replace with actual code)
+        messagebox.showinfo("Save as PDF", f"Report saved as PDF to:\n{file_path}")
+
+
+# Function to save the report as Excel
+def save_as_excel():
+    file_path = filedialog.asksaveasfilename(defaultextension=".xlsx", filetypes=[("Excel files", "*.xlsx")])
+    if file_path:
+        # Simulate saving as Excel (replace with actual code)
+        messagebox.showinfo("Save as Excel", f"Report saved as Excel to:\n{file_path}")
+
+
+# Function to save the report as CSV
+def save_as_csv():
+    file_path = filedialog.asksaveasfilename(defaultextension=".csv", filetypes=[("CSV files", "*.csv")])
+    if file_path:
+        # Simulate saving as CSV (replace with actual code)
+        messagebox.showinfo("Save as CSV", f"Report saved as CSV to:\n{file_path}")
+
+
+# Function to search for a patient by name
+def search_patient():
+    # Replace this with actual search logic, retrieve patient name, and update the search result
+    patient_name = search_entry.get()
+    # For now, simulate search results
+    search_results = ["Patient 1", "Patient 2", "Patient 3"]
+    search_results = [result for result in search_results if patient_name.lower() in result.lower()]
+    update_search_results(search_results)
+
+
+# Function to update the search results
+def update_search_results(results):
+    search_results_listbox.delete(0, tk.END)
+    for result in results:
+        search_results_listbox.insert(tk.END, result)
+
+
+# Create checkboxes for report parameters
+var_demographics = tk.BooleanVar()
+chk_demographics = tk.Checkbutton(app, text="Demographics", variable=var_demographics)
+
+var_medical_history = tk.BooleanVar()
+chk_medical_history = tk.Checkbutton(app, text="Medical History", variable=var_medical_history)
+
+var_date_range = tk.BooleanVar()
+chk_date_range = tk.Checkbutton(app, text="Date Range", variable=var_date_range)
+
+# Create a "Generate Report" button
+btn_generate_report = tk.Button(app, text="Generate Report", command=generate_report)
+
+# Create download buttons for PDF, Excel, and CSV
+btn_download_pdf = tk.Button(app, text="Download PDF", command=save_as_pdf, state=tk.DISABLED)
+btn_download_excel = tk.Button(app, text="Download Excel", command=save_as_excel, state=tk.DISABLED)
+btn_download_csv = tk.Button(app, text="Download CSV", command=save_as_csv, state=tk.DISABLED)
+
+# Create a search input field
+search_label = tk.Label(app, text="Search Patient by Name:")
+search_label.grid(row=0, column=0, sticky=tk.W)
+search_entry = tk.Entry(app, width=40)
+search_entry.grid(row=0, column=1, columnspan=2, sticky=tk.W + tk.E)
+search_button = tk.Button(app, text="Search", command=search_patient)
+search_button.grid(row=0, column=3)
+
+# Create a listbox to display search results
+search_results_listbox = tk.Listbox(app, selectmode=tk.SINGLE, width=50)
+search_results_listbox.grid(row=1, column=0, columnspan=4, padx=10, pady=5)
+
+# Create a text widget to display the generated report
+txt_generated_report = tk.Text(app, wrap=tk.WORD, width=40, height=10)
+txt_generated_report.config(state=tk.DISABLED)
+txt_generated_report.grid(row=2, column=0, columnspan=4, padx=10, pady=10)
+
+# Place widgets in the window using grid layout
+chk_demographics.grid(row=3, column=0, sticky=tk.W)
+chk_medical_history.grid(row=4, column=0, sticky=tk.W)
+chk_date_range.grid(row=5, column=0, sticky=tk.W)
+btn_generate_report.grid(row=6, column=0, pady=10)
+btn_download_pdf.grid(row=7, column=0, padx=10, pady=5)
+btn_download_excel.grid(row=8, column=0, padx=10, pady=5)
+btn_download_csv.grid(row=9, column=0, padx=10, pady=5)
+
+# Start the Tkinter main loop
+app.mainloop()
+
+        </code>
+    </pre>
+    <!-- Add more code snippets as needed -->
+	
+	
+
+    <!-- ... (existing content) ... -->
+
+</section>
+
+            </section>
+
+            <!-- Additional Details -->
+          <section id="additional-details">
+                <h2>Managing Healthcare Management System Requirements in JIRA - Additional Details</h2>
+
+                <h3>II. Placing Requirements in JIRA</h3>
+                <p>Successfully placed healthcare management system requirements in JIRA, ensuring a systematic approach to requirement management.</p>
+
+                <h3>III. SCRUM Board Setup</h3>
+                <p>Set up a SCRUM board, following the SCRUM methodology with the use of sprints for efficient work management.</p>
+
+                <h3>IV. Major Functions (Epics)</h3>
+                <p>Major Functions:</p>
+                <ul>
+                    <li><strong>Patient Record Retrieval:</strong> Allows healthcare professionals to locate and retrieve patient records.</li>
+                    <li><strong>Patient Record Update:</strong> Enables authorized healthcare providers to update patient records.</li>
+                    <li><strong>Report Generation:</strong> Allows for the generation of patient treatment reports.</li>
+                    <li><strong>Appointment Scheduling:</strong> Permits the scheduling of appointments.</li>
+                </ul>
+
+                <h3>V. User Stories (Requirements)</h3>
+                <p>User stories have been defined and allocated into the epics, meeting the requirement:</p>
+                <ul>
+                    <li><strong>Excellent:</strong> A total of 36 user stories, with a minimum of 3 user stories for each major function.</li>
+                </ul>
+
+                <h3>VI. Major Functions (Epics) Details</h3>
+                <ul>
+                    <li><strong>Patient Record Retrieval:</strong>
+                        <ul>
+                            <li><strong>Description and Purpose:</strong> Allows healthcare professionals to locate and retrieve patient records based on advanced search criteria.</li>
+                            <li><strong>Key Features:</strong> The application provides advanced search criteria and user-friendly search parameters.</li>
+                            <li><strong>Usage Scenario:</strong> Healthcare providers efficiently search for patient records for various purposes.</li>
+                            <li><strong>Mockups for Tkinter:</strong> Mockups are available to illustrate the interface.</li>
+                        </ul>
+                    </li>
+
+                    <!-- Repeat similar structure for other major functions -->
+
+                    <li><strong>Additional Updates:</strong> Made modifications to the Patient Record Retrieval and introduced placeholders for patient names, dates of birth, treatment types, etc.</li>
+                </ul>
+
+                <h3>VII. Placing Requirements in JIRA - Verification</h3>
+                <p>All user stories and major functions are successfully placed in JIRA and organized into sprints for efficient management.</p>
+
+                <h3>VIII. Scrum Board Evaluation</h3>
+                <p>The SCRUM board setup aligns completely with the provided instructions, achieving excellence.</p>
+
+            </section>
+<section id="additional-details">
+
+    <!-- ... (existing content) ... -->
+
+    <!-- Screenshots -->
+    <h3>IX. Visuals and Evidence</h3>
+    <p>Here are some visuals and evidence related to the project:</p>
+    <div class="screenshots">
+        <img src="images/requirement.jpg" alt="Placing Requirements in JIRA Screenshot" />
+        <img src="images/requirement2.jpg" alt="Scrum Board Evaluation Screenshot" />
+        <!-- Add more screenshots as needed -->
+    </div>
+
+    <!-- Code Snippets -->
+    <h3>X. Code Snippets</h3>
+    <p>Here are some relevant code snippets from the project:</p>
+    <pre>
+        <code>
+         import tkinter as tk
+
+#Create the main application window
+
+root = tk.Tk()
+root.title("Patient Record Update")
+
+#Create labels and entry fields for search criteria
+
+search_label = tk.Label(root, text="Search Criteria:")
+search_label.pack()
+
+search_entry = tk.Entry(root, width=40)
+search_entry.pack()
+
+#Create a search button
+
+search_button = tk.Button(root, text="Search")
+search_button.pack()
+
+#Create a listbox to display search results
+
+results_listbox = tk.Listbox(root, selectmode=tk.SINGLE, width=50)
+results_listbox.pack()
+
+#Create labels and entry fields for updating patient information
+
+update_label = tk.Label(root, text="Update Patient Information:")
+update_label.pack()
+
+name_label = tk.Label(root, text="Name:")
+name_label.pack()
+
+name_entry = tk.Entry(root, width=40)
+name_entry.pack()
+
+#Similar labels and entry fields for other patient information fields (e.g., date of treatment, type of treatment)
+
+#Create an "Update" button
+
+update_button = tk.Button(root, text="Update")
+update_button.pack()
+
+#Create a status message label to display updates
+
+status_label = tk.Label(root, text="")
+status_label.pack()
+
+#Function to handle the search button click event
+
+def perform_search():
+    # Placeholder logic to simulate search results
+    results = ["Patient 1", "Patient 2", "Patient 3"]
+    results_listbox.delete(0, tk.END)  # Clear previous results
+    for result in results:
+        results_listbox.insert(tk.END, result)
+
+#Function to handle the update button click event
+
+def update_patient():
+    # Placeholder logic to simulate updating patient information
+    patient_name = name_entry.get()
+    # Similar logic for other patient information fields
+    status_label.config(text=f"Updated: {patient_name}")
+
+#Bind the button click events to their respective functions
+
+search_button.config(command=perform_search)
+update_button.config(command=update_patient)
+
+#Start the Tkinter main loop
+
+root.mainloop()
+        </code>
+    </pre>
+    <!-- Add more code snippets as needed -->
+
+    <!-- ... (existing content) ... -->
+
+</section>
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <!-- Add your contact form or other footer content here -->
+        </footer>
+
+        <!-- Copyright -->
+        <div id="copyright">
+            <ul>
+                <li>&copy; Rodrigo Collarana</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
