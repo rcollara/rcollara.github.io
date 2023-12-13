@@ -8,108 +8,10 @@
 <body>
     <!-- Other content in your portfolio -->
 
-    <!-- Embedded Programwiz Java Compiler -->
+    <!-- Embedded Tutorialspoint Java Compiler -->
     <h2>Java Code Playground</h2>
-    <iframe src="https://www.programwiz.com/java?code=import java.util.Scanner;
-
-public class BankTransferApp {
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-
-        // Create two bank account objects
-        Account account1 = new Account(1500, "John Doe", 1234456);
-        Account account2 = new Account(2500, "Mike Sanders", 678954);
-
-        // Main menu loop
-        while (true) {
-            System.out.println("Choose an option:");
-            System.out.println("1. Transfer from account 1 to account 2");
-            System.out.println("2. Transfer from account 2 to account 1");
-            System.out.println("3. Quit");
-
-            // Handle user input
-            int choice = input.nextInt();
-            input.nextLine(); // Consume the newline character
-
-            switch (choice) {
-                case 1:
-                    performTransfer(account1, account2, input);
-                    break;
-                case 2:
-                    performTransfer(account2, account1, input);
-                    break;
-                case 3:
-                    printAccountSummary(account1, account2);
-                    System.out.println("Exiting the program. Goodbye!");
-                    System.exit(0);
-                default:
-                    System.out.println("Invalid choice. Please enter a valid option.");
-            }
-        }
-    }
-
-    // Helper method to perform fund transfer
-    private static void performTransfer(Account source, Account destination, Scanner input) {
-        System.out.print("Enter the amount to transfer: ");
-        double amount = input.nextDouble();
-        source.transfer(destination, amount);
-        System.out.println("Transfer successful!");
-        printAccountSummary(source, destination);
-    }
-
-    // Helper method to print account summary
-    private static void printAccountSummary(Account account1, Account account2) {
-        System.out.println("\nAccount Summary:");
-        System.out.println("1. " + account1);
-        System.out.println("2. " + account2 + "\n");
-    }
-}
-
-class Account {
-    private double totalBalance;
-    private String name;
-    private long acctNum;
-
-    public Account(double initBal, String owner, long number) {
-        totalBalance = initBal;
-        name = owner;
-        acctNum = number;
-    }
-
-    public void withdraw(double amount) {
-        if (totalBalance >= amount)
-            totalBalance -= amount;
-        else
-            System.out.println("Insufficient funds");
-    }
-
-    public void deposit(double amount) {
-        totalBalance += amount;
-    }
-
-    public double getBalance() {
-        return totalBalance;
-    }
-
-    public String toString() {
-        return "Name: " + name + "\nAccount Number: " + acctNum + "\nBalance: $" + totalBalance;
-    }
-
-    public void transfer(Account destination, double amount) {
-        if (totalBalance >= amount) {
-            withdraw(amount);
-            destination.deposit(amount);
-            System.out.println("Transfer successful!");
-        } else {
-            System.out.println("Insufficient funds for the transfer.");
-        }
-    }
-}
-" width="100%" height="400px" frameborder="0"></iframe>
-
-<!-- Example code for user interaction -->
-<textarea id="javaCode" rows="10" cols="80">
-import java.util.Scanner;
+    <textarea id="javaCode" rows="10" cols="80">
+        import java.util.Scanner;
 
 public class BankTransferApp {
     public static void main(String[] args) {
@@ -205,20 +107,36 @@ class Account {
     }
 }
 
-</textarea>
-<br>
-<button onclick="runJavaCode()">Run Java Code</button>
+    </textarea>
+    <br>
+    <button onclick="runJavaCode()">Run Java Code</button>
 
-<script>
-    function runJavaCode() {
-        // Get the Java code from the textarea
-        var javaCode = document.getElementById('javaCode').value;
+    <!-- Display the output -->
+    <div id="output"></div>
 
-        // Update the Programwiz iframe source with the new code
-        var iframe = document.querySelector('iframe');
-        iframe.src = 'https://www.programwiz.com/java?code=' + encodeURIComponent(javaCode);
-    }
-</script>
+    <script>
+        function runJavaCode() {
+            // Get the Java code from the textarea
+            var javaCode = document.getElementById('javaCode').value;
 
+            // Encode the Java code for the URL
+            var encodedJavaCode = encodeURIComponent(javaCode);
+
+            // Create the Tutorialspoint Java compiler URL
+            var compilerUrl = 'https://www.tutorialspoint.com/compile_java_online.php?PID=0&CID=0&Code=' + encodedJavaCode;
+
+            // Fetch the compiler URL content
+            fetch(compilerUrl)
+                .then(response => response.text())
+                .then(data => {
+                    // Extract the output from the response
+                    var output = data.match(/outputdiv[\s\S]*?<\/div>/g)[0];
+
+                    // Display the output
+                    document.getElementById('output').innerHTML = output;
+                })
+                .catch(error => console.error('Error fetching Tutorialspoint Java compiler:', error));
+        }
+    </script>
 </body>
 </html>
