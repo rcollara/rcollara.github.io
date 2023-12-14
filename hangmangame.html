@@ -1,0 +1,263 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <title>Java Hangman Game</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+</head>
+
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <a href="index.html" class="logo">Rodrigo Collarana</a>
+        </header>
+
+        <!-- Main -->
+        <div id="main" class="alt">
+
+            <!-- Java Hangman Game Project Details -->
+            <section id="project-details">
+                <h2>Java Hangman Game</h2>
+
+                <p>This project is a Java implementation of the classic Hangman game. Players can guess letters to uncover a hidden word. The game includes features such as displaying the current state of the word, tracking guessed letters, and limiting the number of incorrect guesses.</p>
+
+                <!-- Code Snippet -->
+                <h3>Java Code Snippet</h3>
+                <pre>
+                    <code>
+                     import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+
+public class HangmanGame {
+    private static final String FILE_PATH = "states.txt";
+
+    private ArrayList<String> words;
+    private char[] word;
+    private boolean[] wordMask;
+    private char[] guessedLetters;
+    private int incorrectAttempts;
+
+    public HangmanGame() {
+        words = new ArrayList<>();
+        word = null;
+        wordMask = null;
+        guessedLetters = new char[26];
+        incorrectAttempts = 0;
+    }
+
+    private void readWordsFromFile() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                words.add(line.toLowerCase());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void chooseRandomWord() {
+        Random random = new Random();
+        int randomIndex = random.nextInt(words.size());
+        String chosenWord = words.get(randomIndex);
+
+        word = chosenWord.toCharArray();
+        wordMask = new boolean[word.length];
+    }
+
+    private void printWord() {
+        for (int i = 0; i < word.length; i++) {
+            if (wordMask[i]) {
+                System.out.print(word[i] + " ");
+            } else {
+                System.out.print("_ ");
+            }
+        }
+        System.out.println();
+    }
+
+    private void printHangman() {
+        int remainingAttempts = 6 - incorrectAttempts;
+
+        System.out.println("Incorrect Attempts: " + incorrectAttempts);
+        System.out.println("  __________");
+        System.out.println(" |         |");
+
+        switch (remainingAttempts) {
+            case 0:
+                System.out.println(" |         |");
+                System.out.println(" |       _/_\\ ");
+                System.out.println(" |        |_|  ");
+                System.out.println(" |       / \\ ");
+                System.out.println(" |      /   \\ ");
+                break;
+            case 1:
+                System.out.println(" |         |");
+                System.out.println(" |       _/_\\ ");
+                System.out.println(" |        |_|  ");
+                System.out.println(" |       /    ");
+                System.out.println(" |      /     ");
+                break;
+            case 2:
+                System.out.println(" |         |");
+                System.out.println(" |       _/_\\ ");
+                System.out.println(" |        |_|  ");
+                System.out.println(" |            ");
+                System.out.println(" |            ");
+                break;
+            case 3:
+                System.out.println(" |         |");
+                System.out.println(" |       _/_  ");
+                System.out.println(" |        |_| ");
+                System.out.println(" |            ");
+                System.out.println(" |            ");
+                break;
+            case 4:
+                System.out.println(" |         |");
+                System.out.println(" |       _/   ");
+                System.out.println(" |        |_| ");
+                System.out.println(" |            ");
+                System.out.println(" |            ");
+                break;
+            case 5:
+                System.out.println(" |         |");
+                System.out.println(" |         |");
+                System.out.println(" |        /| ");
+                System.out.println(" |        |_| ");
+                System.out.println(" |            ");
+                break;
+            case 6:
+                System.out.println(" |         |");
+                System.out.println(" |         |");
+                System.out.println(" |        /|\\");
+                System.out.println(" |        |_| ");
+                System.out.println(" |            ");
+                break;
+        }
+
+        System.out.println(" |            ");
+        System.out.println(" |____________|");
+    }
+
+    private void printGuessedLetters() {
+        System.out.print("Guessed Letters: ");
+        for (char letter : guessedLetters) {
+            if (letter != 0) {
+                System.out.print(letter + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    private boolean isGameOver() {
+        return incorrectAttempts >= 6 || isWordGuessed();
+    }
+
+    private boolean isWordGuessed() {
+        for (boolean isLetterGuessed : wordMask) {
+            if (!isLetterGuessed) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void play() {
+        readWordsFromFile();
+        chooseRandomWord();
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (!isGameOver()) {
+            System.out.println("Hangman Game");
+            printWord();
+            printHangman();
+            printGuessedLetters();
+
+            System.out.print("Guess a letter: ");
+            char guess = scanner.next().toLowerCase().charAt(0);
+
+            guessedLetters[guess - 'a'] = guess;
+
+            boolean correctGuess = false;
+            for (int i = 0; i < word.length; i++) {
+                if (word[i] == guess) {
+                    wordMask[i] = true;
+                    correctGuess = true;
+                }
+            }
+
+            if (!correctGuess) {
+                incorrectAttempts++;
+            }
+        }
+
+        if (isWordGuessed()) {
+            System.out.println("Congratulations! You guessed the word: " + new String(word));
+        } else {
+            System.out.println("Game over! The word was: " + new String(word));
+        }
+    }
+
+    public static void main(String[] args) {
+        HangmanGame hangmanGame = new HangmanGame();
+        hangmanGame.play();
+    }
+}
+
+                    </code>
+                </pre>
+
+                <!-- Image Section -->
+                <h3>Project Images</h3>
+                <div class="screenshots">
+				<h3>Sequence Diagram</h3>
+                    <img src="images/image9.jpg" alt="Hangman Image 1" />
+				<h3>Output Image</h3>
+                    <img src="images/image8.jpg" alt="Hangman Image 2" />
+                    <!-- Add more images as needed -->
+                </div>
+
+                <!-- Additional project details if needed -->
+
+            </section>
+
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <!-- Add your contact form or other footer content here -->
+        </footer>
+
+        <!-- Copyright -->
+        <div id="copyright">
+            <ul>
+                <li>&copy; Rodrigo Collarana</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
