@@ -1,17 +1,39 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Portfolio</title>
-</head>
-<body>
-    <!-- Other content in your portfolio -->
 
-    <!-- Embedded Tutorialspoint Java Compiler -->
-    <h2>Java Code Playground</h2>
-    <textarea id="javaCode" rows="10" cols="80">
-        import java.util.Scanner;
+<head>
+    <title>Java Bank Transfer App</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+</head>
+
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <a href="index.html" class="logo">Rodrigo Collarana</a>
+        </header>
+
+        <!-- Main -->
+        <div id="main" class="alt">
+
+            <!-- Java Bank Transfer App Project Details -->
+            <section id="project-details">
+                <h2>Java Bank Transfer App</h2>
+
+                <p>This project is a simple Java application that allows users to perform fund transfers between two bank accounts. The program uses a console-based menu to choose transfer options.</p>
+
+                <!-- Code Snippet -->
+                <h3>Java Code Snippet</h3>
+                <pre>
+                    <code>
+
+import java.util.Scanner;
 
 public class BankTransferApp {
     public static void main(String[] args) {
@@ -107,36 +129,46 @@ class Account {
     }
 }
 
-    </textarea>
-    <br>
-    <button onclick="runJavaCode()">Run Java Code</button>
+                    </code>
+                </pre>
 
-    <!-- Display the output -->
-    <div id="output"></div>
+                <!-- Image Section -->
+                <h3>Project Images</h3>
+                <div class="screenshots">
+                    <img src="images/image7.jpg" alt="Image 3" />
+                    <img src="images/image6.jpg" alt="Image 4" />
+                    <!-- Add more images as needed -->
+                </div>
 
-    <script>
-        function runJavaCode() {
-            // Get the Java code from the textarea
-            var javaCode = document.getElementById('javaCode').value;
+                <!-- Additional project details if needed -->
 
-            // Encode the Java code for the URL
-            var encodedJavaCode = encodeURIComponent(javaCode);
+            </section>
 
-            // Create the Tutorialspoint Java compiler URL
-            var compilerUrl = 'https://www.tutorialspoint.com/compile_java_online.php?PID=0&CID=0&Code=' + encodedJavaCode;
+        </div>
 
-            // Fetch the compiler URL content
-            fetch(compilerUrl)
-                .then(response => response.text())
-                .then(data => {
-                    // Extract the output from the response
-                    var output = data.match(/outputdiv[\s\S]*?<\/div>/g)[0];
+        <!-- Footer -->
+        <footer id="footer">
+            <!-- Add your contact form or other footer content here -->
+        </footer>
 
-                    // Display the output
-                    document.getElementById('output').innerHTML = output;
-                })
-                .catch(error => console.error('Error fetching Tutorialspoint Java compiler:', error));
-        }
-    </script>
+        <!-- Copyright -->
+        <div id="copyright">
+            <ul>
+                <li>&copy; Rodrigo Collarana</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
 </body>
+
 </html>
