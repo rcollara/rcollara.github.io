@@ -78,30 +78,153 @@
                 <p><strong>Contributors:</strong> We extend our appreciation to the dedicated team members who contributed to the successful development and implementation of the Remote Access Policy.</p>
 
                 <!-- Link to Policy Document -->
-                <p><strong>Link to Policy Document (or provide a downloadable PDF):</strong> https://docs.google.com/document/d/14jWmR3CljVgiO_J9Dn2n9c0mqoTtvZ3_cx3VZL1qNYE/edit?usp=sharing</p>
+                <p><strong>Link to Policy Document (or provide a downloadable PDF):</strong> <a href="https://docs.google.com/document/d/14jWmR3CljVgiO_J9Dn2n9c0mqoTtvZ3_cx3VZL1qNYE/edit?usp=sharing">Remote Access Policy Document</a></p>
 
-<!-- Network Diagram -->
+                <!-- Network Diagram -->
+                <section>
+                    <h3>Network Diagram</h3>
+                    <p>This diagram illustrates the network architecture for the Remote Access Policy project at ABC Healthcare Provider. It showcases the connections and components involved in remote access, including SSL VPN, workstations, LAN, WAN, and the Remote Access Domain.</p>
+                    <img src="images/networkdiagram.jpg" alt="Network Diagram" class="image fit" />
+                    <!-- Network Diagram Code Dropdown -->
+                    <details>
+                        <summary>Network Diagram Code</summary>
+                        <pre><code><!-- Network Diagram -->
 <section>
-    <h3>Network Diagram</h3>
-    <p>This diagram illustrates the network architecture for the Remote Access Policy project at ABC Healthcare Provider. It showcases the connections and components involved in remote access, including SSL VPN, workstations, LAN, WAN, and the Remote Access Domain.</p>
-    <img src="images/networkdiagram.jpg" alt="Network Diagram" class="image fit" />
-</section>
+    <h3>Network Code</h3>
+    <p>digraph RemoteAccessNetwork {
+    rankdir=LR;
+    splines=polyline;
 
-<!-- SSL VPN Connection Illustration -->
+    subgraph cluster_organization {
+        label = "ABC Healthcare Provider";
+        style = dashed;
+        color = blue;
+
+        // Nodes
+        LAN [label="Local Area Network (LAN)"];
+        WAN [label="Wide Area Network (WAN)"];
+        RemoteAccessDomain [label="Remote Access Domain"];
+
+        // Connections
+        LAN -> RemoteAccessDomain [label="Secure Connection"];
+        WAN -> RemoteAccessDomain [label="Secure Connection"];
+    }
+
+    subgraph cluster_remote_workers {
+        label = "Remote Workers";
+        color = green;
+
+        // Nodes
+        Workstation [label="Remote Workstations"];
+
+        // Connections
+        Workstation -> RemoteAccessDomain [label="SSL VPN"];
+    }
+
+    subgraph cluster_medical_clinics {
+        label = "Medical Clinics";
+        color = orange;
+
+        // Nodes
+        RemoteClinicLAN [label="Clinic Local Area Network (LAN)"];
+
+        // Connections
+        RemoteClinicLAN -> RemoteAccessDomain [label="Secure Connection"];
+    }
+
+    // Labels
+    label="Remote Access Network Diagram";
+    fontsize=16;
+}
+</p>
+    
+</section>
+                        </code></pre>
+                    </details>
+                </section>
+
+                <!-- SSL VPN Connection Illustration -->
+                <section>
+                    <h3>SSL VPN Connection Illustration</h3>
+                    <p>This illustration provides a visual representation of how SSL VPN works to establish secure connections between remote devices and ABC Healthcare Provider's network. It highlights the secure connection established through SSL VPN for remote workstations.</p>
+                    <img src="images/networkdiagram2.jpg" alt="SSL VPN Connection Illustration" class="image fit" />
+                    <!-- SSL VPN Connection Illustration Code Dropdown -->
+                    <details>
+                        <summary>SSL VPN Connection Illustration Code</summary>
+                        <pre><code><!-- SSL VPN Connection Illustration -->
 <section>
-    <h3>SSL VPN Connection Illustration</h3>
-    <p>This illustration provides a visual representation of how SSL VPN works to establish secure connections between remote devices and ABC Healthcare Provider's network. It highlights the secure connection established through SSL VPN for remote workstations.</p>
-    <img src="images/networkdiagram2.jpg" alt="SSL VPN Connection Illustration" class="image fit" />
-</section>
+    <h3>SSL VPN Connection Code</h3>
+    <p>digraph SSLVPNConnection {
+    rankdir=LR;
+    splines=polyline;
+    nodesep=0.8;
 
-<!-- Policy Compliance Measures Flowchart -->
+    subgraph cluster_organization {
+        label = "Organization's Network";
+        style = dashed;
+        color = blue;
+
+        // Nodes
+        RemoteDevice [label="Remote Device"];
+        SSLVPN [label="SSL VPN Server"];
+        InternalNetwork [label="Internal Network"];
+    }
+
+    // SSL VPN Connection Flow
+    RemoteDevice -> SSLVPN [label="1. Initiate SSL VPN Connection"];
+    SSLVPN -> InternalNetwork [label="2. Establish Secure Connection"];
+
+    // Labels
+    label="SSL VPN Connection Illustration";
+    fontsize=16;
+}
+</p>
+
+</section>
+                        </code></pre>
+                    </details>
+                </section>
+
+                <!-- Policy Compliance Measures Flowchart -->
+                <section>
+                    <h3>Policy Compliance Measures Flowchart</h3>
+                    <p>This flowchart outlines the steps involved in measuring policy compliance for the Remote Access Policy. It includes the initiation of regular audits, implementation of network monitoring, and reviews of access logs. The flowchart ensures ongoing adherence to the established policy.</p>
+                    <img src="images/sequencediagram.jpg" alt="Policy Compliance Measures Flowchart" class="image fit" />
+                    <!-- Policy Compliance Measures Flowchart Code Dropdown -->
+                    <details>
+                        <summary>Policy Compliance Measures Flowchart Code</summary>
+                        <pre><code><!-- Policy Compliance Measures Flowchart -->
 <section>
-    <h3>Policy Compliance Measures Flowchart</h3>
-    <p>This flowchart outlines the steps involved in measuring policy compliance for the Remote Access Policy. It includes the initiation of regular audits, implementation of network monitoring, and reviews of access logs. The flowchart ensures ongoing adherence to the established policy.</p>
-    <img src="images/sequencediagram.jpg" alt="Policy Compliance Measures Flowchart" class="image fit" />
-</section>
+    <h3>Policy Compliance Measures Flowchart Code</h3>
+    <p>sequenceDiagram
+    participant A as "Organization"
+    participant B as "Auditors"
+    participant C as "Network Monitoring System"
+    participant D as "Access Log Review System"
 
-<!-- ... Additional content ... -->
+    A->>B: Initiate Regular Audit
+    B->>A: Conduct Audit
+    A->>A: Analyze Audit Results
+
+    A->>C: Implement Network Monitoring
+    loop Continuously
+        C->>C: Monitor Network Activities
+        C->>A: Generate Monitoring Reports
+    end
+
+    A->>D: Review Access Logs
+    loop Regularly
+        D->>D: Analyze Access Logs
+        D->>A: Generate Log Review Reports
+    end
+</p>
+  
+</section>
+                        </code></pre>
+                    </details>
+                </section>
+
+                <!-- ... Additional content ... -->
 
             </section>
 
