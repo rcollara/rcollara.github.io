@@ -1,0 +1,275 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <title>Read More - Project Manager</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+</head>
+
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper" class="fade-in">
+
+        <!-- Header -->
+        <header id="header">
+            <a href="index.html" class="logo">Rodrigo Collarana</a>
+        </header>
+
+        <!-- Main Content -->
+        <div id="main">
+
+            <!-- Project Manager Details -->
+            <section class="post">
+                <header class="major">
+                    <h2>Project Manager - SCCM Software Implementation</h2>
+                    <span class="date">Online April 2023</span>
+                </header>
+                <p><strong>Arizona State University</strong></p>
+                <ul>
+                    <li>Led a team in a comprehensive group project focused on utilizing SCCM software, demonstrating effective project management skills.</li>
+                    <li>Coordinated team efforts, ensuring seamless collaboration, and successful achievement of project milestones.</li>
+                    <li>Assumed the role of Project Manager, overseeing task delegation, timeline adherence, and facilitating clear communication among team members.</li>
+                    <li>Enhanced understanding of project management principles, emphasizing successful collaboration to achieve common goals.</li>
+                    <li>Applied skills in task delegation and timeline management to contribute to the project's success.</li>
+                    <li>Developed the ability to lead and motivate a team towards a shared objective, fostering a collaborative and efficient working environment.</li>
+                </ul>
+
+                <!-- PrintNightmare Vulnerability Project -->
+                <section>
+                    <h3>PrintNightmare Vulnerability Project</h3>
+                    <p>For this specific project, we addressed the PrintNightmare vulnerability, a security concern known for its potential remote code execution. Our tasks included:</p>
+                    <ol>
+                        <li>Creating a Configuration Item for detection, checking registry keys, and values to identify the vulnerability.</li>
+                        <li>Developing remediation logic to automatically fix non-compliant systems by adjusting necessary registry settings.</li>
+                        <li>Deploying the Configuration Baseline, monitoring compliance status, and conducting rigorous testing to verify effectiveness.</li>
+                    </ol>
+
+                    <!-- Code Snippet for PrintNightmare -->
+                    <section>
+                        <h4>Code Snippet - Configuration Item for PrintNightmare</h4>
+                        <pre><code>Detection
+# Specify the registry path and value to check
+$registryPath = "HKLM:\SYSTEM\CurrentControlSet\Services\PrintSpooler"
+$registryValueName = "RestrictDriverInstallationToAdministrators"
+
+# Check if the registry value exists
+if (Test-Path -Path $registryPath) {
+    $registryValue = Get-ItemProperty -Path $registryPath -Name $registryValueName
+
+    # Check the value data
+    if ($registryValue.$registryValueName -eq 0) {
+        # Vulnerability detected (non-compliant)
+        Write-Host "PrintNightmare vulnerability detected: Registry value is 0"
+        exit 0
+    } else {
+        # System is compliant
+        Write-Host "System is compliant: Registry value is not 0"
+        exit 1
+    }
+} else {
+    # Registry key not found (compliant)
+    Write-Host "Registry key not found: System is compliant"
+    exit 1
+}
+
+Remediation:
+# Define the registry key path and value name
+for PrintNightmare
+$registryPath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Printers\PointAndPrint"
+$valueName = "RestrictDriverInstallationToAdministrators"
+
+# Check
+if the registry key exists
+if (Test - Path - Path $registryPath) {
+  # Check the current value of the registry key
+  $currentValue = (Get - ItemProperty - Path $registryPath).$valueName
+
+  # If the value is set to 0(non - compliant), remediate it to 1(compliant)
+  if ($currentValue - eq 0) {
+    Set - ItemProperty - Path $registryPath - Name $valueName - Value 1
+    Write - Host "Remediated PrintNightmare vulnerability. Registry value adjusted to 1."
+  } else {
+    Write - Host "System is already compliant. No action needed."
+  }
+} else {
+  Write - Host "Registry key not found. System is compliant."
+}
+
+# Exit with a code to indicate success(0) or compliance(1)
+Exit 0
+</code></pre>
+                    </section>
+
+                    <!-- Screenshot for PrintNightmare -->
+                    <section>
+                        <h4>Screenshot - PrintNightmare Configuration Baseline Deployment</h4>
+                        <img src="images/hive1.jpg" alt="PrintNightmare Screenshot" class="image fit" />
+                    </section>
+                </section>
+
+                <!-- HiveNightmare Vulnerability Project -->
+                <section>
+                    <h3>HiveNightmare Vulnerability Project</h3>
+                    <p>Additionally, we addressed the HiveNightmare vulnerability, focusing on simulation, detection, and remediation. Our tasks included:</p>
+                    <ol>
+                        <li>Enabling Shadow Copies for simulation purposes to mimic real-world conditions.</li>
+                        <li>Creating a Configuration Item involving scripting to detect and remediate the HiveNightmare vulnerability.</li>
+                        <li>Similar to the PrintNightmare task, deploying the Configuration Baseline, assessing compliance status, and ensuring effective vulnerability resolution.</li>
+                    </ol>
+
+                    <!-- Code Snippet for HiveNightmare -->
+                    <section>
+                        <h4>Code Snippet - Configuration Item for HiveNightmare</h4>
+                        <pre><code>Detection
+# Define the registry path to check for HiveNightmare vulnerability
+$registryPath = "HKLM:\SYSTEM\CurrentControlSet\Control\BackupRestore\FilesNotToBackup"
+
+# Check if the registry key exists
+if (Test-Path -Path $registryPath) {
+    # The registry key exists, indicating potential vulnerability
+    Write-Host "HiveNightmare vulnerability detected. Registry key exists."
+    
+    # You can add additional checks or actions here if needed
+    
+    # Exit with a code of "0" to indicate non-compliance
+    exit 0
+} else {
+    # The registry key does not exist, system is compliant
+    Write-Host "HiveNightmare vulnerability not detected. System is compliant."
+    
+    # Exit with a code of "1" to indicate compliance
+    exit 1
+}
+Remediation: 
+# Define the registry path to remove the HiveNightmare vulnerability
+$registryPath = "HKLM:\SYSTEM\CurrentControlSet\Control\BackupRestore\FilesNotToBackup"
+
+# Check if the registry key exists
+if (Test-Path -Path $registryPath) {
+    # The registry key exists, indicating potential vulnerability
+    Write-Host "HiveNightmare vulnerability detected. Remediation required."
+    
+    # Remove the registry key to remediate the vulnerability
+    Remove-Item -Path $registryPath -Force
+    
+    # Check if the key was successfully removed
+    if (-not (Test-Path -Path $registryPath)) {
+        Write-Host "HiveNightmare vulnerability remediated. Registry key removed."
+        
+        # Check for the presence of Shadow Copies before removal
+        $vssShadowsBeforeRemoval = vssadmin list shadows
+        Write-Host "Shadow Copies before removal:"
+        Write-Host $vssShadowsBeforeRemoval
+        
+        # Remove Shadow Copies
+        Write-Host "Removing existing Shadow Copies..."
+        vssadmin delete shadows /for=%systemdrive% /Quiet
+        Write-Host "Existing Shadow Copies removed."
+        
+        # Check for the presence of Shadow Copies after removal
+        $vssShadowsAfterRemoval = vssadmin list shadows
+        Write-Host "Shadow Copies after removal:"
+        Write-Host $vssShadowsAfterRemoval
+        
+        # Exit with a code of "0" to indicate successful remediation
+        exit 0
+    } else {
+        Write-Host "HiveNightmare vulnerability remediation failed. Registry key still exists."
+        
+        # Exit with a code of "1" to indicate remediation failure
+        exit 1
+    }
+} else {
+    # The registry key does not exist, no remediation needed
+    Write-Host "HiveNightmare vulnerability not detected. No remediation required."
+    
+    # Exit with a code of "1" to indicate compliance
+    exit 1
+}
+</code></pre>
+                    </section>
+
+                    <!-- Screenshot for HiveNightmare -->
+                    <section>
+                        <h4>Screenshot - HiveNightmare Configuration Baseline Deployment</h4>
+                        <img src="images/hive2.jpg" alt="HiveNightmare Screenshot" class="image fit" />
+                    </section>
+                </section>
+
+      <!-- Windows Active Directory Project -->
+<section>
+    <h3>Windows Active Directory Project - Creating OU Structure via PowerShell</h3>
+    <p>As part of another project, we worked on creating the OU (Organizational Unit) structure in Windows Active Directory using PowerShell. This involved:</p>
+    <ul>
+        <li>Designing and implementing the OU structure based on organizational needs.</li>
+        <li>Utilizing PowerShell scripts for efficient and automated OU creation.</li>
+        <!-- Add more details as needed -->
+    </ul>
+
+    <!-- Code Snippet for Windows Active Directory PowerShell Project -->
+    <section>
+        <h4>Code Snippet - PowerShell Script for OU Creation</h4>
+        <pre><code>Creating Structured OUS in accordance to the assignment 
+
+New-ADOrganizationalUnit -Name Users -path "ou=Engineering,ou=TheGreenEnergyBatteryCompany,dc=rcollara,dc=local"
+New-ADOrganizationalUnit -Name Groups -path "ou=Engineering,ou=TheGreenEnergyBatteryCompany,dc=rcollara,dc=local"
+New-ADOrganizationalUnit -Name Computers -path "ou=Engineering,ou=TheGreenEnergyBatteryCompany,dc=rcollara,dc=local"
+New-ADOrganizationalUnit -Name Resources -path "ou=Engineering,ou=TheGreenEnergyBatteryCompany,dc=rcollara,dc=local"
+New-ADOrganizationalUnit -Name Users -path "ou=RandD,ou=TheGreenEnergyBatteryCompany,dc=rcollara,dc=local"
+New-ADOrganizationalUnit -Name Groups -path "ou=RandD,ou=TheGreenEnergyBatteryCompany,dc=rcollara,dc=local"
+New-ADOrganizationalUnit -Name Computers -path "ou=RandD,ou=TheGreenEnergyBatteryCompany,dc=rcollara,dc=local"
+New-ADOrganizationalUnit -Name Resources -path "ou=RandD,ou=TheGreenEnergyBatteryCompany,dc=rcollara,dc=local"
+New-ADOrganizationalUnit -Name Users -path "ou=Business,ou=TheGreenEnergyBatteryCompany,dc=rcollara,dc=local"
+New-ADOrganizationalUnit -Name Groups -path "ou=Business,ou=TheGreenEnergyBatteryCompany,dc=rcollara,dc=local"
+New-ADOrganizationalUnit -Name Computers -path "ou=Business,ou=TheGreenEnergyBatteryCompany,dc=rcollara,dc=local"
+New-ADOrganizationalUnit -Name Resources -path "ou=Business,ou=TheGreenEnergyBatteryCompany,dc=rcollara,dc=local"
+New-ADOrganizationalUnit -Name Users -path "ou=Legal,ou=TheGreenEnergyBatteryCompany,dc=rcollara,dc=local"
+New-ADOrganizationalUnit -Name Groups -path "ou=Legal,ou=TheGreenEnergyBatteryCompany,dc=rcollara,dc=local"
+New-ADOrganizationalUnit -Name Computers -path "ou=Legal,ou=TheGreenEnergyBatteryCompany,dc=rcollara,dc=local"
+New-ADOrganizationalUnit -Name Resources -path "ou=Legal,ou=TheGreenEnergyBatteryCompany,dc=rcollara,dc=local"
+New-ADOrganizationalUnit -Name Users -path "ou=IT,ou=TheGreenEnergyBatteryCompany,dc=rcollara,dc=local"
+New-ADOrganizationalUnit -Name Groups -path "ou=IT,ou=TheGreenEnergyBatteryCompany,dc=rcollara,dc=local"
+</code></pre>
+    </section>
+
+    <!-- Screenshot for Windows Active Directory PowerShell Project -->
+    <section>
+        <h4>Screenshot - OU Structure Created via PowerShell</h4>
+        <img src="images/oucreation.jpg" alt="Active Directory Project Screenshot" class="image fit" />
+    </section>
+</section>
+
+
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <!-- Add your contact form or other footer content here -->
+        </footer>
+
+        <!-- Copyright -->
+        <div id="copyright">
+            <ul>
+                <li>&copy; Rodrigo Collarana</li>
+                <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
