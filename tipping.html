@@ -1,0 +1,469 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Tipping App - Rodrigo Collarana's Portfolio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/themes/prism.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-xml.min.js"></script>
+</head>
+
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <a href="index.html" class="logo">Rodrigo Collarana</a>
+        </header>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul class="links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="certifications.html">Certifications</a></li>
+                <li><a href="internship.html">Internships</a></li>
+                <!-- Add more tabs as needed -->
+            </ul>
+            <ul class="icons">
+                <li><a href="https://www.linkedin.com/in/rodrigocollarana/" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+                <li><a href="https://rcollara.github.io/" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            </ul>
+        </nav>
+
+           <div id="main">
+
+            <!-- Tipping App Project -->
+            <section class="post">
+                <header class="major">
+                    <h2><a href="#">Tipping App for Android</a></h2>
+                    <span class="date">January 2024</span>
+                </header>
+                <p>
+                    <h3>Overview</h3>
+                    This app aims to simplify the process of calculating and managing tips for various services, enhancing the overall user experience. Here's a breakdown of the key features and functionalities:
+                </p>
+                
+                <!-- Description Sections with Appealing Headers -->
+                <section>
+                    <h3>User Interface Elements</h3>
+                    <p>The app includes essential UI elements such as an EditText for entering the base amount, a SeekBar for selecting tip percentages, and TextViews to display calculated tip amounts, total amounts, and a descriptive tip rating.</p>
+                </section>
+
+                <section>
+                    <h3>Real-time Updates</h3>
+                    <p>The app provides real-time updates as users input the base amount or adjust the tip percentage using the SeekBar. The calculations for tip amount, total amount, and tip description are dynamically updated.</p>
+                </section>
+
+                <section>
+                    <h3>Dynamic Tip Description</h3>
+                    <p>The tip description is dynamically determined based on the selected tip percentage. It categorizes tips into different levels (e.g., Poor, Acceptable, Good, Great, Excellent) with corresponding color-coding for better user understanding.</p>
+                </section>
+
+                <section>
+                    <h3>Tip Calculation</h3>
+                    <p>The core functionality lies in the accurate calculation of the tip and total amount based on the entered base amount and the selected tip percentage.</p>
+                </section>
+
+                <section>
+                    <h3>Input Validation</h3>
+                    <p>The app performs input validation to ensure that the base amount is a valid numeric value. If not, it defaults to a base amount of 0.0.</p>
+                </section>
+
+                <section>
+                    <h3>Color-Coded Feedback</h3>
+                    <p>The app utilizes color-coding to visually represent the quality of the tip, providing users with an intuitive and quick understanding of their tipping choice.</p>
+                </section>
+
+                <p>
+                    <h3>Conclusion</h3>
+                    This Tipping App not only streamlines the tipping process but also adds a user-friendly touch with dynamic feedback, making it easy for users to choose an appropriate tip amount. The code is well-structured, utilizing Android's UI components and event listeners effectively to create a responsive and interactive user experience.
+                </p>
+            </section>
+ 
+                  <!-- Code Snippet for MainActivity.kt -->
+                <details>
+                    <summary>MainActivity.kt</summary>
+                    <pre>
+                        <code class="language-kotlin">
+                        package com.example.tippy
+
+import android.content.res.ColorStateList
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.EditText
+import android.widget.SeekBar
+import android.widget.TextView
+import androidx.core.content.ContextCompat
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var etBaseAmount: EditText
+    private lateinit var seekBarTip: SeekBar
+    private lateinit var tvTipPercent: TextView
+    private lateinit var tvTipAmount: TextView
+    private lateinit var tvTotalAmount: TextView
+    private lateinit var tvTipDescription: TextView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        etBaseAmount = findViewById(R.id.etBaseAmount)
+        seekBarTip = findViewById(R.id.seekBarTip)
+        tvTipPercent = findViewById(R.id.tvTipPercent)
+        tvTipAmount = findViewById(R.id.tvTipAmount)
+        tvTotalAmount = findViewById(R.id.tvTotalAmount)
+        tvTipDescription = findViewById(R.id.tvTipDescription)
+
+        etBaseAmount.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                updateTipAndTotal()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
+
+        seekBarTip.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                tvTipPercent.text = "$progress%"
+                updateTipAndTotal()
+                updateTipDescription(progress)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+            }
+        })
+    }
+
+    private fun updateTipAndTotal() {
+        val baseAmount = etBaseAmount.text.toString().toDoubleOrNull() ?: 0.0
+        val tipPercentage = seekBarTip.progress
+        val tipAmount = (baseAmount * tipPercentage / 100)
+        val totalAmount = baseAmount + tipAmount
+
+        tvTipAmount.text = String.format("%.2f", tipAmount)
+        tvTotalAmount.text = String.format("%.2f", totalAmount)
+    }
+
+    private fun updateTipDescription(tipPercent: Int) {
+        val tipDescription = when (tipPercent) {
+            in 0..8 -> {
+                tvTipDescription.setTextColor(ContextCompat.getColor(this, R.color.poorColor))
+                "Poor"
+            }
+            in 9..14 -> {
+                tvTipDescription.setTextColor(ContextCompat.getColor(this, R.color.acceptableColor))
+                "Acceptable"
+            }
+            in 15..19 -> {
+                tvTipDescription.setTextColor(ContextCompat.getColor(this, R.color.goodColor))
+                "Good"
+            }
+            in 20..24 -> {
+                tvTipDescription.setTextColor(ContextCompat.getColor(this, R.color.greatColor))
+                "Great"
+            }
+            else -> {
+                tvTipDescription.setTextColor(ContextCompat.getColor(this, R.color.excellentColor))
+                "Excellent"
+            }
+        }
+        tvTipDescription.text = tipDescription
+    }
+}
+                        </code>
+                    </pre>
+                </details>
+
+ 
+
+                <!-- Code Snippet for activity_main.xml -->
+                <details>
+                    <summary>activity_main.xml</summary>
+                    <pre>
+                        <code class="language-xml">
+                            <!-- ... (activity_main.xml code) -->
+						 version="1.0" encoding="utf-8"
+<!-- activity_main.xml -->
+?xml version="1.0" encoding="utf-8"?>
+androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    TextView
+        android:id="@+id/tvBaseLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
+        android:text="Base"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    TextView
+        android:id="@+id/tvTipPercent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvBaseLabel"
+        tools:text="24%" />
+
+    TextView
+        android:id="@+id/tvTipLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Tip"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintTop_toBottomOf="@+id/tvTipPercent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    TextView
+        android:id="@+id/tvTotalLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Total"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintTop_toBottomOf="@+id/tvTipLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    EditText
+        android:id="@+id/etBaseAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="8"
+        android:hint="Bill Amount"
+        android:inputType="numberDecimal"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvBaseLabel"
+        app:layout_constraintTop_toTopOf="@+id/tvBaseLabel"
+        app:layout_constraintStart_toEndOf="@+id/tvBaseLabel"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    SeekBar
+        android:id="@+id/seekBarTip"
+        android:layout_width="207dp"
+        android:layout_height="14dp"
+        android:max="30"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTipPercent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvTipPercent"
+        app:layout_constraintTop_toTopOf="@+id/tvTipPercent" />
+
+    TextView
+        android:id="@+id/tvTipAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTipLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvTipLabel"
+        app:layout_constraintTop_toTopOf="@+id/tvTipLabel"
+        tools:text="19.96" />
+
+    TextView
+        android:id="@+id/tvTotalAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTotalLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvTotalLabel"
+        app:layout_constraintTop_toTopOf="@+id/tvTotalLabel"
+        tools:text="103.11" />
+
+    <!-- Existing Views -->
+
+    TextView
+        android:id="@+id/tvTipDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Description"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalAmount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+androidx.constraintlayout.widget.ConstraintLayout>
+
+							
+                        </code>
+                    </pre>
+                </details>
+
+
+                <!-- ... (remaining content remains unchanged) ... -->
+            </section>
+
+
+                <!-- Image Section -->
+                <section>
+                    <h3>App Screenshots</h3>
+                    <div class="box alt">
+                        <div class="row gtr-50 gtr-uniform">
+                            <div class="col-6"><span class="image fit"><img src="images/tipping_app_screen1.jpg" alt="Tipping App Screen 1" /></span></div>
+                            <div class="col-6"><span class="image fit"><img src="images/tipping_app_screen2.jpg" alt="Tipping App Screen 2" /></span></div>
+                            <!-- Add more screenshots as needed -->
+                        </div>
+                    </div>
+                </section>
+				
+				               <!-- Flowchart Section -->
+                <section>
+                    <h3>Flowchart</h3>
+                    <p>This section will contain a flowchart depicting the workflow of the Tipping App.</p>
+                    <!-- Image Placeholder for Flowchart -->
+                    <img src="images/tippingflowchart.jpg" alt="Flowchart" />
+                </section>
+			    <!-- Code Snippet for Flowchart -->
+    <details>
+        <summary>Flowchart Code</summary>
+        <pre>
+            <code class="language-mermaid">
+                <!-- Your Flowchart Code Goes Here -->
+				flowchart TD
+    subgraph Initialization
+        A[Initialize Views]
+        B[Set Event Listeners]
+        C[Set Initial Values]
+        A --> B --> C
+    end
+
+    subgraph UserInteraction
+        D[Enter Base Amount]
+        E[Adjust Tip Percentage]
+        D --> E
+    end
+
+    subgraph UpdateLogic
+        F[Update Tip and Total]
+        G[Update Tip Description]
+        F --> G
+    end
+
+    subgraph Display
+        H[Display Tip Amount]
+        I[Display Total Amount]
+        J[Display Tip Description]
+        H --> I --> J
+    end
+
+    A --> D
+    E --> F
+    G --> H
+
+            </code>
+        </pre>
+    </details>
+</section>
+
+                <!-- Sequence Diagram Section -->
+                <section>
+                    <h3>Sequence Diagram</h3>
+                    <p>This section will contain a sequence diagram illustrating the interactions between components in the Tipping App.</p>
+                    <!-- Image Placeholder for Sequence Diagram -->
+                    <img src="images/tipingseqence.jpg" alt="Sequence Diagram" />
+                </section>
+
+              <!-- Code Snippet for Sequence Diagram -->
+    <details>
+        <summary>Sequence Diagram Code</summary>
+        <pre>
+            <code class="language-mermaid">
+                <!-- Your Sequence Diagram Code Goes Here -->
+				sequenceDiagram
+    participant User
+    participant MainActivity
+    participant EditText as etBaseAmount
+    participant SeekBar as seekBarTip
+    participant TextView as tvTipPercent
+    participant TextView as tvTipAmount
+    participant TextView as tvTotalAmount
+    participant TextView as tvTipDescription
+
+    User->>MainActivity: Launch App
+    MainActivity->>MainActivity: Initialize Views, Set Listeners, Set Initial Values
+
+    loop User Interaction
+        User->>etBaseAmount: Enter Base Amount
+        User->>seekBarTip: Adjust Tip Percentage
+    end
+
+    alt Text Changed
+        etBaseAmount->>MainActivity: Text Changed
+        MainActivity->>MainActivity: Update Tip and Total
+        MainActivity->>MainActivity: Update Tip Description
+        MainActivity->>tvTipAmount: Display Tip Amount
+        MainActivity->>tvTotalAmount: Display Total Amount
+        MainActivity->>tvTipDescription: Display Tip Description
+    else SeekBar Changed
+        seekBarTip->>MainActivity: SeekBar Changed
+        MainActivity->>MainActivity: Update Tip and Total
+        MainActivity->>tvTipPercent: Display Updated Tip Percentage
+        MainActivity->>tvTipAmount: Display Tip Amount
+        MainActivity->>tvTotalAmount: Display Total Amount
+        MainActivity->>tvTipDescription: Display Tip Description
+    end
+
+            </code>
+        </pre>
+    </details>
+</section>
+
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <!-- Add your contact form or other footer content here -->
+        </footer>
+
+        <!-- Copyright -->
+        <div id="copyright">
+            <ul><li>&copy; Rodrigo Collarana</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+        </div>
+
+    </div>
+
+      <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-xml.min.js"></script>
+    <script>
+        Prism.highlightAll();
+    </script>
+
+</body>
+</html>
