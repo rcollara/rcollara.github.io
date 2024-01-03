@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html lang="en">
+   <head>
+      <title>Web Application Security Assessment Project</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+      <link rel="stylesheet" href="assets/css/main.css" />
+      <noscript>
+         <link rel="stylesheet" href="assets/css/noscript.css" />
+      </noscript>
+   </head>
+   <body class="is-preload">
+      <!-- Wrapper -->
+      <div id="wrapper">
+         <!-- Header -->
+         <header id="header">
+            <a href="index.html" class="logo">Rodrigo Collarana</a>
+         </header>
+         <!-- Main -->
+         <div id="main" class="alt">
+            <!-- Web Application Security Assessment Project -->
+            <section id="project-details">
+               <h2>Web Application Security Assessment Project</h2>
+               <!-- Executive Summary -->
+               <h3>Executive Summary</h3>
+               <p>The Web Application Security Assessment Project was conducted to identify and address vulnerabilities within the targeted web application. The assessment primarily focused on potential threats related to Cross-Site Scripting (XSS) and SQL injection, aiming to understand the extent of the application's susceptibility to exploitation.</p>
+               <!-- Project Scope -->
+               <h3>Project Scope</h3>
+               <h4>Objectives</h4>
+               <ul>
+                  <li>Identify XSS Vulnerabilities: Test the web application for XSS vulnerabilities using various injection techniques.
+                     Determine the impact and potential risks associated with successful XSS attacks.
+                  </li>
+                  <li>Detect SQL Injection Vulnerabilities: 	Assess the web application for SQL injection vulnerabilities.
+                     Understand the potential consequences of exploiting SQL injection vulnerabilities.
+                  </li>
+                  <li>Provide Remediation Recommendations: 	Propose actionable solutions to mitigate identified vulnerabilities.
+                     Establish security best practices to enhance the overall resilience of the web application.
+                  </li>
+               </ul>
+               <h4>Methodologies</h4>
+               <ol>
+                  <li>Cross-Site Scripting (XSS) Assessment</li>
+                  <ul>
+                     <li>Formulation of Malicious Scripts: 	Created HTML forms with text fields to test for XSS vulnerabilities.
+                        Injected malicious JavaScript code to assess the susceptibility of the application.
+                     </li>
+                     <li>Validation of XSS Vulnerabilities: 	Submitted scripts to the web form to confirm and document XSS vulnerabilities.
+                        Analyzed results, including pop-up alerts, indicating XSS vulnerability.
+                     </li>
+                  </ul>
+                  <li>SQL Injection Assessment</li>
+                  <ul>
+                     <li>Identification of SQL Injection Points: 	Submitted SQL injection scripts to form fields to identify potential points of vulnerability.
+                        Observed responses to validate and document SQL injection susceptibility.
+                     </li>
+                     <li>Exploration of Database Structure: 	Executed UNION SELECT queries to retrieve information about the database schema.
+                        Extracted data, such as table and column names, to understand the database structure.
+                     </li>
+                     <li>User Privilege and Hash Extraction: 	Executed queries to extract information about the backend database user.
+                        Displayed hashes to assess the level of access and potential security risks.
+                     </li>
+                  </ul>
+               </ol>
+               <!-- Findings -->
+               <h3>Findings</h3>
+               <ol>
+                  <li>Cross-Site Scripting (XSS)</li>
+                  <p>Successfully identified XSS vulnerabilities through injection of malicious scripts. Confirmed susceptibility through pop-up alerts, indicating potential security risks.</p>
+                  <li>SQL Injection</li>
+                  <p>Detected SQL injection points within the web application. Explored database structure and extracted sensitive information, showcasing potential risks. Successfully displayed hashes indicating potential unauthorized access to the backend database.</p>
+               </ol>
+               <!-- Recommendations and Solutions -->
+               <h3>Recommendations and Solutions</h3>
+               <ol>
+                  <li>Cross-Site Scripting (XSS)</li>
+                  <ul>
+                     <li>Input Validation: Implement strict input validation to sanitize user inputs.</li>
+                     <li>Regular Security Audits: Conduct regular security audits to identify and address emerging XSS vulnerabilities.</li>
+                  </ul>
+                  <li>SQL Injection</li>
+                  <ul>
+                     <li>Parameterized Queries: Implement parameterized queries to prevent SQL injection attacks.</li>
+                     <li>Database User Privileges: Review and limit database user privileges to minimize potential impact.</li>
+                  </ul>
+               </ol>
+               <!-- Conclusion -->
+               <h3>Conclusion</h3>
+               <p>The Web Application Security Assessment Project highlighted significant vulnerabilities, including XSS and SQL injection, within the targeted web application. The project provided actionable insights, recommendations, and solutions to fortify the application's security posture. Continuous monitoring, regular security audits, and adherence to best practices are essential to maintaining a resilient and secure web application.</p>
+            </section>
+         </div>
+         <!-- Footer -->
+         <footer id="footer">
+            <!-- Add your contact form or other footer content here -->
+         </footer>
+         <!-- Copyright -->
+         <div id="copyright">
+            <ul>
+               <li>&copy; Rodrigo Collarana</li>
+               <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+            </ul>
+         </div>
+      </div>
+      <!-- Scripts -->
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/jquery.scrollex.min.js"></script>
+      <script src="assets/js/jquery.scrolly.min.js"></script>
+      <script src="assets/js/browser.min.js"></script>
+      <script src="assets/js/breakpoints.min.js"></script>
+      <script src="assets/js/util.js"></script>
+      <script src="assets/js/main.js"></script>
+   </body>
+</html>
