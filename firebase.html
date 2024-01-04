@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>Project: Vulnerability Test in AVG</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+      <link rel="stylesheet" href="assets/css/main.css" />
+      <noscript>
+         <link rel="stylesheet" href="assets/css/noscript.css" />
+      </noscript>
+   </head>
+   <body class="is-preload">
+      <!-- Wrapper -->
+      <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+         <a href="index.html" class="logo">Rodrigo Collarana</a>
+      </header>
+      <!-- Main -->
+      <div id="main" class="alt">
+      <!-- Project Description -->
+      <section id="project-description">
+      <h1>Firebase Login App Project</h1>
+      <!-- Project Summary -->
+      <section>
+         <h2>Project Summary</h2>
+         <p>The project aimed to create a dynamic and engaging web application with user authentication and Firestore integration using Firebase. The focus was on providing users with a seamless experience, enabling them to log in with their Google accounts, create random "things," and view those things in real-time.</p>
+      </section>
+      <!-- Technologies Used -->
+      <section>
+         <h2>Technologies Used</h2>
+         <ul>
+            <li>Firebase: Used for user authentication and Firestore database.</li>
+            <li>JavaScript: Utilized for client-side scripting and interaction with Firebase SDK.</li>
+            <li>HTML: Structured the layout and content of the web pages.</li>
+            <li>CSS: Styled the application for a visually appealing user interface.</li>
+            <li>Bootstrap: Integrated for responsive and aesthetically pleasing UI components.</li>
+            <li>Faker.js: Employed for generating random "things" during testing.</li>
+         </ul>
+      </section>
+      <!-- Key Features -->
+      <section>
+         <h2>Key Features</h2>
+         <ul>
+            <li>
+               User Authentication:
+               <button onclick="toggleCode('user-auth-code')">View Code</button>
+               <div id="user-auth-code" class="code-container">
+                  <!-- Add your user authentication code snippet here -->
+                  <pre>
+                        <code>
+            
+							sequenceDiagram
+  participant User
+  participant App
+  participant Firebase
+
+  User ->> App: Opens the app
+  App ->> Firebase: Initializes Firebase
+
+  User ->> App: Clicks "Sign in with Google"
+  App ->> Firebase: Initiates Google Sign-In Popup
+  Firebase -->> App: Returns User Info
+
+  alt User signed in
+    App ->> App: Show user details section
+  else User not signed in
+    App ->> App: Show sign-in button
+  end
+
+  User ->> App: Clicks "Create a Random Thing"
+  App ->> Firebase: Adds a new thing to Firestore
+
+  alt User signed in
+    Firebase -->> App: New thing added successfully
+    App ->> App: Update things list
+  else User not signed in
+    App ->> App: Show sign-in prompt
+  end
+
+  User ->> App: Clicks "Sign Out"
+  App ->> Firebase: Initiates Sign Out
+
+  Firebase -->> App: Sign Out successful
+  App ->> App: Hide user details section
+
+                        </code>
+                    </pre>
+               </div>
+            </li>
+            <!-- Repeat this pattern for other key features -->
+            <section>
+               <h2>Sequence Diagram Screenshot</h2>
+               <!-- Add your screenshots here -->
+               <p>Explore the authentication documentation for Firebase:</p>
+               <a href="https://docs.google.com/document/d/1Aq_0E6nVEXl13ssonQSVllfE5YycZOxYGZ-hxQbpwUc/edit?usp=sharing" target="_blank">Firebase Authentication Documentation</a>
+               <img src="images/authsequence.jpg" alt="Screenshot 1">
+            </section>
+            <li>
+               Firestore Integration:
+               <button onclick="toggleCode('firestore-code')">View Code</button>
+               <div id="firestore-code" class="code-container">
+                  <!-- Add your Firestore integration code snippet here -->
+                  <pre>
+                        <code>
+      graph TD
+  subgraph UserAuthentication
+    A[Initialize Firebase Auth]
+    B[Get DOM elements]
+    C[Create Google Auth Provider]
+    D[Sign In/Out Event Handlers]
+    E[Handle Auth State Changes]
+    A -->|Initialize| B
+    B -->|Get Elements| C
+    C -->|Create Provider| D
+    D -->|Event Handlers| E
+  end
+
+  subgraph Firestore
+    F[Initialize Firestore]
+    G[Get DOM elements]
+    H[Create Thing Event Handler]
+    I[Handle Auth State Changes]
+    F -->|Initialize| G
+    G -->|Get Elements| H
+    H -->|Event Handler| I
+  end
+
+  subgraph Database
+    J[Initialize Database Reference]
+    K[Handle Create Thing]
+    L[Handle Query and Update UI]
+    J -->|Initialize| K
+    K -->|Create Thing| L
+  end
+
+							
+                        </code>
+                    </pre>
+               </div>
+            </li>
+            <!-- ... -->
+            <h2>Firestore Integration Flowchart</h2>
+            <!-- Add your screenshots here -->
+            <p>Learn about Firestore integration in your Firebase project:</p>
+            <a href="https://docs.google.com/document/d/1lJdbrpzcrJbEMlup05yByr12bTqBFnq85bxphwQAicg/edit?usp=sharing" target="_blank">Firestore Documentation</a>
+            <img src="images/firestoreflowchart.jpg" alt="Screenshot 1">
+         </ul>
+      </section>
+      <!-- Methodologies -->
+      <section>
+         <h2>Methodologies</h2>
+         <ul>
+            <li>Agile Development: Followed an agile development approach, allowing for iterative updates and improvements.
+               Regularly reviewed and adjusted project goals based on ongoing development.
+            </li>
+            <li>Test-Driven Development (TDD): Conducted thorough testing of each feature during development.
+               Ensured the application's robustness and reliability through continuous testing.
+            </li>
+         </ul>
+      </section>
+      <!-- Findings -->
+      <section>
+         <h2>Findings</h2>
+         <p>Firebase Provides Seamless Integration: Firebase proved to be a powerful backend solution for real-time data storage and retrieval.
+            Integration with the Firebase SDK facilitated quick and efficient development.
+         </p>
+         <p>Real-time Updates Enhance User Experience: Real-time updates provided a seamless and dynamic user experience.
+            Users could see changes in the application as they occurred, enhancing engagement.
+         </p>
+      </section>
+      <!-- Conclusions -->
+      <section>
+         <h2>Conclusions</h2>
+         <p>The project successfully demonstrated the integration of Firebase for user authentication and backend development.</p>
+         <p>Real-time updates provided a dynamic user experience, crucial for modern web applications.</p>
+         <p>Bootstrap and Faker.js contributed to the aesthetics and functionality of the application.</p>
+      </section>
+      <!-- Future Improvements -->
+      <section>
+         <h2>Future Improvements</h2>
+         <ul>
+            <li>Explore additional Firebase features, such as Firebase Hosting for deploying the web application.</li>
+            <li>Enhance security features and user profile management.</li>
+            <li>Implement user-specific permissions for data access.</li>
+         </ul>
+      </section>
+      <!-- Screenshots -->
+      <section>
+         <h2>Screenshots</h2>
+         <!-- Add your screenshots here -->
+         <img src="images/firebase.jpg" alt="Screenshot 1">
+         <img src="images/things.jpg" alt="Screenshot 2">
+      </section>
+      <!-- Scripts -->
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/jquery.scrollex.min.js"></script>
+      <script src="assets/js/jquery.scrolly.min.js"></script>
+      <script src="assets/js/browser.min.js"></script>
+      <script src="assets/js/breakpoints.min.js"></script>
+      <script src="assets/js/util.js"></script>
+      <script src="assets/js/main.js"></script>
+      <script>
+         function toggleCode(codeId) {
+             var codeContainer = document.getElementById(codeId);
+             codeContainer.classList.toggle('active');
+         }
+      </script>
+   </body>
+</html>
